@@ -33,8 +33,16 @@ struct ba_config config = {
 
 	.hfp.features_sdp_hf =
 		SDP_HFP_HF_FEAT_CLI |
-		SDP_HFP_HF_FEAT_VOLUME,
-	.hfp.features_sdp_ag = 0,
+		SDP_HFP_HF_FEAT_VOLUME |
+#if ENABLE_MSBC
+		SDP_HFP_HF_FEAT_WBAND |
+#endif
+		0,
+	.hfp.features_sdp_ag =
+#if ENABLE_MSBC
+		SDP_HFP_AG_FEAT_WBAND |
+#endif
+		0,
 	.hfp.features_rfcomm_hf =
 		HFP_HF_FEAT_CLI |
 		HFP_HF_FEAT_VOLUME |
